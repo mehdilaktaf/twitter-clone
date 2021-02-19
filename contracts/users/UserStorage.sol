@@ -3,7 +3,7 @@ pragma solidity >=0.6.0 <=0.8.0;
 
 contract UserStorage {
     
-    mapping(uint => Profile) profiles;
+    mapping(uint => Profile) public profiles;
 
     struct Profile {
         uint id;
@@ -13,11 +13,12 @@ contract UserStorage {
     uint latestUserId = 0;
 
     function createUser(bytes32 _username) public returns(uint) {
-    latestUserId++;  
+        latestUserId++;  
 
-    profiles[latestUserId] = Profile(latestUserId, _username);
+        profiles[latestUserId] = Profile(latestUserId, _username);
 
-    return latestUserId;
+        return latestUserId;
     }
+
 
 }
