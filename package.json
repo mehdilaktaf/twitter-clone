@@ -1,0 +1,11 @@
+{
+  "name": "twitter-clone",
+  "version": "1.0.0",
+  "description": "Twitter clone made with Solidity and React",
+  "main": "index.js",
+  "scripts": {
+    "test": "truffle test"
+  },
+  "author": "Mehdi Laktaf",
+  "license": "MIT"
+}
