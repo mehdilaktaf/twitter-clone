@@ -7,23 +7,34 @@ contract('users', () => {
   it("Can create user with controller", async () => {
     const controller = await UserController.deployed()
 
-    const username = web3.utils.fromAscii("mehdi")
-    const tx = await controller.createUser(username)
+    const tx = await controller.createUser(
+      web3.utils.fromAscii("mehdi"),
+      web3.utils.fromAscii("Mehdi"),
+      web3.utils.fromAscii("Laktaf"),
+      "I like coding stuff",
+      "test@test.com"
+    )
 
     assert.isOk(tx)
-  });
-  
+  })
+
   it("Can't create user without controller", async () => {
     const storage = await UserStorage.deployed()
 
     try {
-      const username = web3.utils.fromAscii("mehdi")
-      await storage.createUser(username)
-      assert.fail()
+      const tx = await storage.createUser(
+        0x0,
+        web3.utils.fromAscii("mehdi"),
+				web3.utils.fromAscii("Mehdi"),
+				web3.utils.fromAscii("Laktaf"),
+				"I like coding stuff",
+				"test@test.com"
+      )
+      assert.fail();
     } catch (err) {
       assertVMException(err);
     }
-  });
+  })
 
   it("Can get user", async () => {
     const storage = await UserStorage.deployed()
